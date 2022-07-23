@@ -28,3 +28,7 @@ func DrawSlowDiagonal(img *image.Paletted, x, y, width int) {
 		img.Set(x+i, y+width-i, color.Black)
 	}
 }
+
+func DrawWhitespace(img *image.Paletted, x, y int) {
+	img.Set(x, y, color.White)
+}

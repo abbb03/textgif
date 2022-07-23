@@ -73,6 +73,8 @@ func (g *GIFGenerator) writeLetter(l rune) *image.Paletted {
 	frame := image.NewPaletted(prevFrame.Rect, prevFrame.Palette)
 	copy(frame.Pix, prevFrame.Pix)
 	switch l {
+	case ' ':
+		drawer.DrawWhitespace(frame, g.Sheet.x, g.Sheet.y)
 	case 'а':
 		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
 		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, charX-1)
@@ -256,7 +258,10 @@ func (g *GIFGenerator) writeLetter(l rune) *image.Paletted {
 	}
 
 	g.Sheet.x += charX + 2
-	g.Sheet.y = 1
 
+	if (g.Sheet.image.Rect.Dx() - g.Sheet.x) < charX {
+		g.Sheet.x = 1
+		g.Sheet.y += charY + 1
+	}
 	return frame
 }

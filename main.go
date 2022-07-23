@@ -5,16 +5,28 @@ import (
 	"os"
 
 	"gifgenerator"
+
+	"github.com/abbb03/textgif/inputprocessor"
 )
 
 func main() {
-	str := "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-	gifgen := gifgenerator.NewGIFGenerator(128, 128, 50)
-	gif := gifgen.EncodeGif(str[32*2:])
-	gifFile, err := os.OpenFile("hello.gif", os.O_WRONLY|os.O_CREATE, 0600)
+	if len(os.Args) < 2 {
+		fmt.Fprintf(os.Stderr, "textgif: enter the filename\n")
+		return
+	}
+	gifName := os.Args[1]
+	text, err := inputprocessor.GetInput()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		return
+	}
+
+	gifgen := gifgenerator.NewGIFGenerator(96, 96, 50)
+	gif := gifgen.EncodeGif(text)
+	gifFile, err := os.OpenFile(gifName+".gif", os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "gocat: %v\n", err)
-		os.Exit(1)
+		return
 	}
 	defer gifFile.Close()
 
