@@ -176,7 +176,81 @@ func (g *GIFGenerator) writeLetter(l rune) *image.Paletted {
 		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, charX)
 	case 'у':
 		drawer.DrawFastDiagonal(frame, g.Sheet.x, g.Sheet.y, 3)
-		drawer.DrawSlowDiagonal(frame, g.Sheet.x+3, g.Sheet.y-1, 2)
+		drawer.DrawSlowDiagonal(frame, g.Sheet.x+3, g.Sheet.y-1, 3)
+		drawer.DrawSlowDiagonal(frame, g.Sheet.x+1, g.Sheet.y+2, 3)
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y+charY-1, 1)
+	case 'ф':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y+1, 3)
+		drawer.DrawVertical(frame, g.Sheet.x+2, g.Sheet.y, charY)
+		drawer.DrawVertical(frame, g.Sheet.x+charX-1, g.Sheet.y+1, 3)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, 3)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+4, 3)
+	case 'х':
+		drawer.DrawFastDiagonal(frame, g.Sheet.x, g.Sheet.y, charX)
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y+charY-1, 1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, 1)
+		drawer.DrawSlowDiagonal(frame, g.Sheet.x, g.Sheet.y, charX)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+charY-2, 1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+charY-1, 1)
+	case 'ц':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY-1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX-1, g.Sheet.y, charY-1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-2, charX-1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+charY-2, 2)
+	case 'ч':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, 3)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, charX)
+	case 'ш':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
+		drawer.DrawVertical(frame, g.Sheet.x+3, g.Sheet.y, charY-1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, charY-1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-1, charX)
+	case 'щ':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY-1)
+		drawer.DrawVertical(frame, g.Sheet.x+2, g.Sheet.y, charY-1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX-1, g.Sheet.y, charY-1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-2, charX)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+charY-2, 2)
+	case 'ъ':
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, 2)
+		drawer.DrawVertical(frame, g.Sheet.x+2, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x+2, g.Sheet.y+3, 3)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+4, 3)
+		drawer.DrawHorizontal(frame, g.Sheet.x+2, g.Sheet.y+charY-1, 2)
+	case 'ы':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, 3)
+		drawer.DrawVertical(frame, g.Sheet.x+charX-2, g.Sheet.y+4, 3)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-1, 2)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, charY)
+	case 'ь':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, charX)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+4, 3)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-1, charX)
+	case 'э':
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+1, charY-2)
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y+1, 1)
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y+charY-2, 1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, charX-1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, charX)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+charY-1, charX-1)
+	case 'ю':
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, 1)
+		drawer.DrawVertical(frame, g.Sheet.x+2, g.Sheet.y+1, charY-2)
+		drawer.DrawHorizontal(frame, g.Sheet.x+2, g.Sheet.y, 2)
+		drawer.DrawHorizontal(frame, g.Sheet.x+2, g.Sheet.y+charY-1, 2)
+		drawer.DrawVertical(frame, g.Sheet.x+5, g.Sheet.y+1, charY-2)
+	case 'я':
+		drawer.DrawHorizontal(frame, g.Sheet.x-1, g.Sheet.y+charY-1, 2)
+		drawer.DrawSlowDiagonal(frame, g.Sheet.x+1, g.Sheet.y+3, 3)
+		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, 3)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, charY)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, charX-1)
+		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, charX-1)
+		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+1, 2)
 	default:
 		return frame
 	}
