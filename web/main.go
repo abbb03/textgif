@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
-	"net/http"
 	"strings"
+
+	"github.com/abbb03/textgif/web/controllers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,19 +18,9 @@ func main() {
 
 	router.LoadHTMLGlob("./web/assets/html/*.html")
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": "This is an index page...",
-		})
-	})
+	router.GET("/", controllers.LoadIndex)
 
-	router.POST("/create-gif", func(c *gin.Context) {
-		width := c.PostForm("size-y")
-		fmt.Println(width)
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": "This is an index page..." + width,
-		})
-	})
+	router.POST("/create-gif", controllers.CreateImage)
 
 	router.Run(":8080")
 }
