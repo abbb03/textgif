@@ -6,7 +6,7 @@ import (
 
 	"gifgenerator"
 
-	"github.com/abbb03/textgif/inputprocessor"
+	"github.com/abbb03/textgif/app/inputprocessor"
 )
 
 func main() {

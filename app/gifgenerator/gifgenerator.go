@@ -103,9 +103,7 @@ func (g *GIFGenerator) writeLetter(l rune) *image.Paletted {
 		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y+5, 2)
 		drawer.DrawHorizontal(frame, g.Sheet.x-1, g.Sheet.y+4, charX+1)
 		drawer.DrawHorizontal(frame, g.Sheet.x+1, g.Sheet.y, charX-3)
-	case 'е':
-		fallthrough
-	case 'ё':
+	case 'е', 'ё':
 		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
 		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y, charX-1)
 		drawer.DrawHorizontal(frame, g.Sheet.x, g.Sheet.y+3, charX)
@@ -128,9 +126,7 @@ func (g *GIFGenerator) writeLetter(l rune) *image.Paletted {
 		drawer.DrawHorizontal(frame, g.Sheet.x+1, g.Sheet.y+charY-4, charX-3)
 		drawer.DrawVertical(frame, g.Sheet.x+charX-1, g.Sheet.y+1, 2)
 		drawer.DrawVertical(frame, g.Sheet.x+charX-1, g.Sheet.y+charY-3, 2)
-	case 'и':
-		fallthrough
-	case 'й':
+	case 'и', 'й':
 		drawer.DrawVertical(frame, g.Sheet.x, g.Sheet.y, charY)
 		drawer.DrawSlowDiagonal(frame, g.Sheet.x+1, g.Sheet.y, charX-1)
 		drawer.DrawVertical(frame, g.Sheet.x+charX, g.Sheet.y, charY)
