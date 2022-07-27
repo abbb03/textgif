@@ -9,7 +9,11 @@ import (
 	"strconv"
 )
 
-func GetMD5Hash() string {
+func GetName() string {
+	return getMD5Hash()
+}
+
+func getMD5Hash() string {
 	h := md5.New()
 	r := newCryptoRand()
 	io.WriteString(h, strconv.FormatInt(r, 10))

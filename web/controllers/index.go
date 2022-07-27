@@ -11,7 +11,7 @@ func CreateImage(c *gin.Context) {
 	width := c.PostForm("size-x")
 	height := c.PostForm("size-y")
 	text := c.PostForm("input-text")
-	gif, err := models.CreateGif(text, width, height)
+	gif, err := models.GetGif(text, width, height)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "index.html", gin.H{
 			"content": err.Error(),

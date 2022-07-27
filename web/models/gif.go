@@ -1,7 +1,6 @@
 package models
 
 import (
-	"bytes"
 	"gifgenerator"
 	"os"
 	"strconv"
@@ -11,11 +10,22 @@ import (
 )
 
 type gif struct {
-	Name    string
-	content bytes.Buffer
+	Path string
+	File *os.File
 }
 
-func CreateGif(text, sizeX, sizeY string) (*os.File, error) {
+func GetGif(text, sizeX, sizeY string) (*gif, error) {
+	giffile, err := createGifFile(text, sizeX, sizeY)
+	if err != nil {
+		return &gif{}, err
+	}
+	g := &gif{}
+	g.Path = "../../../" + giffile.Name()
+	g.File = giffile
+	return g, nil
+}
+
+func createGifFile(text, sizeX, sizeY string) (*os.File, error) {
 	text, err := inputprocessor.GetText(text)
 	if err != nil {
 		return nil, err
@@ -32,18 +42,17 @@ func CreateGif(text, sizeX, sizeY string) (*os.File, error) {
 	}
 
 	gifgen := gifgenerator.NewGIFGenerator(x, y, 50)
-	g := &gif{
-		content: gifgen.EncodeGif(text),
-		Name:    namegen.GetMD5Hash(),
-	}
+	content := gifgen.EncodeGif(text)
+	filename := namegen.GetName()
 
-	gifFile, err := os.OpenFile(g.Name+".gif", os.O_WRONLY|os.O_CREATE, 0600)
+	gifFile, err := os.OpenFile(filename+".gif", os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		return nil, err
 	}
+
 	defer gifFile.Close()
 
-	gifFile.Write(g.content.Bytes())
+	gifFile.Write(content.Bytes())
 
 	return gifFile, nil
 }
