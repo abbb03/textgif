@@ -1,12 +1,19 @@
 package models
 
 import (
+	"bytes"
 	"gifgenerator"
 	"os"
 	"strconv"
 
 	"github.com/abbb03/textgif/app/inputprocessor"
+	"github.com/abbb03/textgif/web/pkg/namegen"
 )
+
+type gif struct {
+	Name    string
+	content bytes.Buffer
+}
 
 func CreateGif(text, sizeX, sizeY string) (*os.File, error) {
 	text, err := inputprocessor.GetText(text)
@@ -25,14 +32,18 @@ func CreateGif(text, sizeX, sizeY string) (*os.File, error) {
 	}
 
 	gifgen := gifgenerator.NewGIFGenerator(x, y, 50)
-	gif := gifgen.EncodeGif(text)
-	gifFile, err := os.OpenFile("test.gif", os.O_WRONLY|os.O_CREATE, 0600)
+	g := &gif{
+		content: gifgen.EncodeGif(text),
+		Name:    namegen.GetMD5Hash(),
+	}
+
+	gifFile, err := os.OpenFile(g.Name+".gif", os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		return nil, err
 	}
 	defer gifFile.Close()
 
-	gifFile.Write(gif.Bytes())
+	gifFile.Write(g.content.Bytes())
 
 	return gifFile, nil
 }
