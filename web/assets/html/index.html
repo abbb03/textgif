@@ -8,12 +8,12 @@
     <p>{{ .content }}
         <form action="/create-gif" method="post">
             <p>
-                <label for="size-y">Ширина:</label>
+                <label for="size-y">Высота:</label>
                 <input id="size-y" name="size-y" type="number" min="64" max="128" required><br>
             </p>
             <p>
-                <label for="size-y">Высота:</label>
-                <input id="size-y" name="size-x" type="number" min="64" max="128" required>
+                <label for="size-x">Ширина:</label>
+                <input id="size-x" name="size-x" type="number" min="64" max="128" required><br>
             </p>
             </p>
                 <label for="input-text">Текст:</label>
@@ -27,7 +27,7 @@
     <div>
         {{if .gif}}
         <p>
-            <a href={{.gif.Path}} download>Скачать GIF</a>
+            <a href={{.gif.Name}} download>Скачать GIF</a>
         </p>
         {{end}}
     </div>

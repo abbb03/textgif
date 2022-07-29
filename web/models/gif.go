@@ -3,29 +3,14 @@ package models
 import (
 	"gifgenerator"
 	"os"
+	"path/filepath"
 	"strconv"
 
 	"github.com/abbb03/textgif/app/inputprocessor"
 	"github.com/abbb03/textgif/web/pkg/namegen"
 )
 
-type gif struct {
-	Path string
-	File *os.File
-}
-
-func GetGif(text, sizeX, sizeY string) (*gif, error) {
-	giffile, err := createGifFile(text, sizeX, sizeY)
-	if err != nil {
-		return &gif{}, err
-	}
-	g := &gif{}
-	g.Path = "../../../" + giffile.Name()
-	g.File = giffile
-	return g, nil
-}
-
-func createGifFile(text, sizeX, sizeY string) (*os.File, error) {
+func CreateGifFile(text, sizeX, sizeY string) (*os.File, error) {
 	text, err := inputprocessor.GetText(text)
 	if err != nil {
 		return nil, err
@@ -43,9 +28,9 @@ func createGifFile(text, sizeX, sizeY string) (*os.File, error) {
 
 	gifgen := gifgenerator.NewGIFGenerator(x, y, 50)
 	content := gifgen.EncodeGif(text)
-	filename := namegen.GetName()
-
-	gifFile, err := os.OpenFile(filename+".gif", os.O_WRONLY|os.O_CREATE, 0600)
+	filename := namegen.GetName() + ".gif"
+	path := filepath.Join("./tmp", filename)
+	gifFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		return nil, err
 	}

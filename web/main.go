@@ -21,6 +21,7 @@ func main() {
 	router.GET("/", controllers.LoadIndex)
 
 	router.POST("/create-gif", controllers.CreateImage)
+	router.GET("/tmp/:name", controllers.GetFile)
 
 	router.Run(":8080")
 }
